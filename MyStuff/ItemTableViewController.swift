@@ -10,6 +10,8 @@ import UIKit
 
 class ItemTableViewController: UITableViewController {
 
+    var items = ["item1", "item2"]
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,23 +31,28 @@ class ItemTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return items.count
     }
 
-    /*
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell", for: indexPath) as! ItemTableViewCell
 
-        // Configure the cell...
+      if indexPath.row == 1 {
+        cell.itemName.text = "Samsung Color Laser Printer"
+        cell.itemValue.text = "$45.00"
+        cell.itemDescription.text = "not working well"
+      }
+      
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
