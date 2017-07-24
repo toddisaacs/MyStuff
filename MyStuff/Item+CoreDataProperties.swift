@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  MyStuff
 //
-//  Created by Isaacs, Todd on 7/15/17.
+//  Created by Isaacs, Todd on 7/24/17.
 //  Copyright © 2017 Isaacs, Todd. All rights reserved.
 //
 
@@ -16,18 +16,17 @@ extension Item {
         return NSFetchRequest<Item>(entityName: "Item")
     }
 
+    @NSManaged public var brand: String?
+    @NSManaged public var descr: String?
+    @NSManaged public var itemValue: NSDecimalNumber?
+    @NSManaged public var lastUpdated: NSDate?
+    @NSManaged public var model: String?
     @NSManaged public var name: String?
     @NSManaged public var purchasePrice: NSDecimalNumber?
-    @NSManaged public var itemValue: NSDecimalNumber?
     @NSManaged public var serialNumber: String?
-    @NSManaged public var descr: String?
-    @NSManaged public var lastUpdated: NSDate?
-    @NSManaged public var brand: String?
-    @NSManaged public var model: String?
-    @NSManaged public var photos: NSSet?
-    @NSManaged public var location: Location?
-    @NSManaged public var room: Room?
     @NSManaged public var category: Category?
+    @NSManaged public var location: Location?
+    @NSManaged public var photos: NSSet?
 
 }
 

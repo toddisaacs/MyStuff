@@ -13,10 +13,16 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  let coredataStack = CoreDataStack(modelName: "MyStuff")
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    print("Path: \(String(describing: paths.first))")
+    
+    SeedData.seed(stack: coredataStack)
+    
     return true
   }
 
