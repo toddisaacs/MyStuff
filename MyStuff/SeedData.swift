@@ -10,11 +10,7 @@ import CoreData
 
 class SeedData {
   static func seed(stack: CoreDataStack) {
-    //Seed Data
-    
-    //Categories
-    //Item
-    //Photo
+
     let managedContext = stack.managedContext
     
     
