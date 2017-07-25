@@ -16,6 +16,7 @@
 		3261BE811F267DB300CF32BD /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE791F267DB300CF32BD /* Location+CoreDataProperties.swift */; };
 		3261BE821F267DB300CF32BD /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE7A1F267DB300CF32BD /* Photo+CoreDataClass.swift */; };
 		3261BE831F267DB300CF32BD /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE7B1F267DB300CF32BD /* Photo+CoreDataProperties.swift */; };
+		3261BE851F26ABFA00CF32BD /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */; };
 		32C4CA5D1F18EB360034470A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5C1F18EB360034470A /* CoreDataStack.swift */; };
 		32C4CA5F1F18F1100034470A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5E1F18F1100034470A /* ItemTableViewCell.swift */; };
 		32C4CA611F18F16E0034470A /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA601F18F16E0034470A /* ItemTableViewController.swift */; };
@@ -48,6 +49,7 @@
 		3261BE791F267DB300CF32BD /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3261BE7A1F267DB300CF32BD /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3261BE7B1F267DB300CF32BD /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		32C4CA5C1F18EB360034470A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		32C4CA5E1F18F1100034470A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		32C4CA601F18F16E0034470A /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				32D7E8C71F18DF0B00919A98 /* Info.plist */,
 				32D7E8BF1F18DF0B00919A98 /* MyStuff.xcdatamodeld */,
 				32C4CA5C1F18EB360034470A /* CoreDataStack.swift */,
+				3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */,
 			);
 			path = MyStuff;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				32D7E8C11F18DF0B00919A98 /* MyStuff.xcdatamodeld in Sources */,
 				32D7E8B91F18DF0B00919A98 /* AppDelegate.swift in Sources */,
 				3261BE731F267A8C00CF32BD /* SeedData.swift in Sources */,
+				3261BE851F26ABFA00CF32BD /* AddItemViewController.swift in Sources */,
 				3261BE7F1F267DB300CF32BD /* Item+CoreDataProperties.swift in Sources */,
 				32C4CA5D1F18EB360034470A /* CoreDataStack.swift in Sources */,
 			);

@@ -10,7 +10,19 @@ import UIKit
 
 class ItemTableViewController: UITableViewController {
 
-    var items = ["item1", "item2"]
+  var items = ["item1", "item2"]
+  
+  var coreDataStack:CoreDataStack!
+  
+  //MARK: Actions
+  @IBAction func unwindToItemList(sender: UIStoryboardSegue) {
+    if let sourceViewController = sender.source as? AddItemViewController, let item = sourceViewController.item {
+      //update or add
+      print("Add item \(String(describing: item.name))")
+    }
+  }
+  
+  
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +32,8 @@ class ItemTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+      
+      
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,14 +103,31 @@ class ItemTableViewController: UITableViewController {
     }
     */
 
-    /*
+  
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+      super.prepare(for: segue, sender: sender)
+      
+      switch(segue.identifier ?? "") {
+      case "addItem" :
+        guard let navController = segue.destination as? UINavigationController else {
+           fatalError("Unexpected destination \(segue.destination), Expected UINavigationCOntroller")
+        }
+        
+        guard let addItemController = navController.topViewController as? AddItemViewController else {
+          fatalError("Unexpected destination Expected AddItemViewController")
+        }
+        
+        //populate core data stack
+        addItemController.coreDataStack = coreDataStack
+      default:
+        fatalError("Unexpected segue identifier \(String(describing: segue.identifier))")
+        
     }
-    */
+ 
+  }
+  
 
 }

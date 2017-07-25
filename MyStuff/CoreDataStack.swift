@@ -41,17 +41,16 @@ class CoreDataStack {
   
   
   //MARK: Methods
-  func saveContext() {
+  func saveContext() throws {
+    //var error: NSError?
+    
     guard managedContext.hasChanges else { return }
     
     do {
       try managedContext.save()
-    } catch let error as NSError {
-      print("Unresolved error \(error), \(error.userInfo)")
+    } catch let saveError as NSError {
+      throw saveError
     }
   }
-
-  
-  
   
 }

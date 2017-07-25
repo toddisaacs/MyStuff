@@ -13,15 +13,22 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let coredataStack = CoreDataStack(modelName: "MyStuff")
+  let coreDataStack = CoreDataStack(modelName: "MyStuff")
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    //Override point for customization after application launch.
     
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     print("Path: \(String(describing: paths.first))")
     
-    SeedData.seed(stack: coredataStack)
+    SeedData.seed(stack: coreDataStack)
+    
+    //populate main view with CoreDataStack
+    let navController = window?.rootViewController as? UINavigationController
+    let itemsController = navController?.topViewController as? ItemTableViewController
+    
+    itemsController?.coreDataStack = coreDataStack
+    
     
     return true
   }
