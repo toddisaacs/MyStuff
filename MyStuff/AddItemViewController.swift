@@ -25,7 +25,7 @@ class AddItemViewController: ViewController {
   
   //Properties
   var item: Item?
-  var coreDataStack: CoreDataStack!
+  var delegate: AddItemViewControllerDelegate?
   
   @IBAction func cancel(_ sender: Any) {
     navigationController?.dismiss(animated: true, completion: nil)
@@ -44,19 +44,14 @@ class AddItemViewController: ViewController {
       
     }
     
-    
-    item = Item(context: coreDataStack.managedContext)
-   
-    item?.name = nameText.text
-    item?.brand = brandText.text
-    item?.model = modelText.text
-    
-    do {
-      try coreDataStack.saveContext()
-    } catch let error as NSError {
-      print("Error \(error.userInfo)")
+    if let item = item {
+      item.name = nameText.text
+      item.brand = brandText.text
+      item.model = modelText.text
+      item.purchasePrice = 1.00
+      
+      delegate?.onAddItem(item: item)
     }
-    
     
     performSegue(withIdentifier: "unwindToItemList", sender: nil)
   }
@@ -80,6 +75,9 @@ class AddItemViewController: ViewController {
       
         print("prepare")
     }
- 
 
+}
+
+protocol AddItemViewControllerDelegate {
+  func onAddItem(item:Item?)
 }

@@ -121,13 +121,23 @@ class ItemTableViewController: UITableViewController {
         }
         
         //populate core data stack
-        addItemController.coreDataStack = coreDataStack
+        addItemController.delegate = self
+        addItemController.item = Item(context: coreDataStack.managedContext)
       default:
         fatalError("Unexpected segue identifier \(String(describing: segue.identifier))")
         
     }
- 
   }
-  
+}
 
+extension ItemTableViewController: AddItemViewControllerDelegate {
+  func onAddItem(item: Item?) {
+    print("adding added: \(String(describing: item?.name))")
+    
+    do {
+      try coreDataStack.saveContext()
+    } catch let error as NSError {
+      print("Error saving data \(error)")
+    }
+  }
 }
