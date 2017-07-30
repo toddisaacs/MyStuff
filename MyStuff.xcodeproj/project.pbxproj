@@ -17,6 +17,7 @@
 		3261BE821F267DB300CF32BD /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE7A1F267DB300CF32BD /* Photo+CoreDataClass.swift */; };
 		3261BE831F267DB300CF32BD /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE7B1F267DB300CF32BD /* Photo+CoreDataProperties.swift */; };
 		3261BE851F26ABFA00CF32BD /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */; };
+		3261BE871F2CEB6800CF32BD /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE861F2CEB6800CF32BD /* ImageStore.swift */; };
 		32C4CA5D1F18EB360034470A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5C1F18EB360034470A /* CoreDataStack.swift */; };
 		32C4CA5F1F18F1100034470A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5E1F18F1100034470A /* ItemTableViewCell.swift */; };
 		32C4CA611F18F16E0034470A /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA601F18F16E0034470A /* ItemTableViewController.swift */; };
@@ -50,6 +51,7 @@
 		3261BE7A1F267DB300CF32BD /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3261BE7B1F267DB300CF32BD /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		3261BE861F2CEB6800CF32BD /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		32C4CA5C1F18EB360034470A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		32C4CA5E1F18F1100034470A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		32C4CA601F18F16E0034470A /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				32D7E8BF1F18DF0B00919A98 /* MyStuff.xcdatamodeld */,
 				32C4CA5C1F18EB360034470A /* CoreDataStack.swift */,
 				3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */,
+				3261BE861F2CEB6800CF32BD /* ImageStore.swift */,
 			);
 			path = MyStuff;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				3261BE801F267DB300CF32BD /* Location+CoreDataClass.swift in Sources */,
 				3261BE7E1F267DB300CF32BD /* Item+CoreDataClass.swift in Sources */,
+				3261BE871F2CEB6800CF32BD /* ImageStore.swift in Sources */,
 				32C4CA611F18F16E0034470A /* ItemTableViewController.swift in Sources */,
 				3261BE831F267DB300CF32BD /* Photo+CoreDataProperties.swift in Sources */,
 				3261BE7D1F267DB300CF32BD /* Category+CoreDataProperties.swift in Sources */,
