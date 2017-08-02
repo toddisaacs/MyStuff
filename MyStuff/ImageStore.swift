@@ -12,16 +12,17 @@ class ImageStore {
 
   let imageCache = NSCache<NSString, UIImage>()
   
-  func set(image: UIImage, key: NSString) {
-    imageCache.setObject(image, forKey: key)
+  func set(image: UIImage, key: String) throws {
+    imageCache.setObject(image, forKey: key as NSString)
     
-    let imageURL = getImageURL(forKey: key as String)
+    let imageURL = getImageURL(forKey: key)
     
     if let imageData = UIImageJPEGRepresentation(image, 0.5) {
       do {
         try imageData.write(to: imageURL, options: .atomic)
       } catch let error as NSError {
         print("Error writing image to disk \(error.userInfo)")
+        throw error
       }
     }
   }

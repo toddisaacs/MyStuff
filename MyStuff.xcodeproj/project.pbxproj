@@ -18,6 +18,8 @@
 		3261BE831F267DB300CF32BD /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE7B1F267DB300CF32BD /* Photo+CoreDataProperties.swift */; };
 		3261BE851F26ABFA00CF32BD /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */; };
 		3261BE871F2CEB6800CF32BD /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE861F2CEB6800CF32BD /* ImageStore.swift */; };
+		3261BE891F2E2A2500CF32BD /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE881F2E2A2500CF32BD /* CoreDataStackTests.swift */; };
+		3261BE8B1F3169CE00CF32BD /* ImageStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261BE8A1F3169CE00CF32BD /* ImageStoreTests.swift */; };
 		32C4CA5D1F18EB360034470A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5C1F18EB360034470A /* CoreDataStack.swift */; };
 		32C4CA5F1F18F1100034470A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5E1F18F1100034470A /* ItemTableViewCell.swift */; };
 		32C4CA611F18F16E0034470A /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA601F18F16E0034470A /* ItemTableViewController.swift */; };
@@ -52,6 +54,8 @@
 		3261BE7B1F267DB300CF32BD /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		3261BE861F2CEB6800CF32BD /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
+		3261BE881F2E2A2500CF32BD /* CoreDataStackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
+		3261BE8A1F3169CE00CF32BD /* ImageStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStoreTests.swift; sourceTree = "<group>"; };
 		32C4CA5C1F18EB360034470A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		32C4CA5E1F18F1100034470A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		32C4CA601F18F16E0034470A /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 			children = (
 				32D7E8D01F18DF0B00919A98 /* MyStuffTests.swift */,
 				32D7E8D21F18DF0B00919A98 /* Info.plist */,
+				3261BE881F2E2A2500CF32BD /* CoreDataStackTests.swift */,
+				3261BE8A1F3169CE00CF32BD /* ImageStoreTests.swift */,
 			);
 			path = MyStuffTests;
 			sourceTree = "<group>";
@@ -278,7 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3261BE8B1F3169CE00CF32BD /* ImageStoreTests.swift in Sources */,
 				32D7E8D11F18DF0B00919A98 /* MyStuffTests.swift in Sources */,
+				3261BE891F2E2A2500CF32BD /* CoreDataStackTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

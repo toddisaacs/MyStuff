@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddItemViewController: ViewController {
+class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   @IBOutlet weak var saveButton: UIBarButtonItem!
   
@@ -29,6 +29,14 @@ class AddItemViewController: ViewController {
   
   @IBAction func cancel(_ sender: Any) {
     navigationController?.dismiss(animated: true, completion: nil)
+  }
+  
+  @IBAction func addPhoto(_ sender: UITapGestureRecognizer) {
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.sourceType = .photoLibrary
+    imagePickerController.delegate = self
+    
+    present(imagePickerController, animated: true, completion: nil)
   }
   
   @IBAction func saveItem(_ sender: Any) {
@@ -75,8 +83,26 @@ class AddItemViewController: ViewController {
       
         print("prepare")
     }
+  
+  //MARK: UIImagePickerControllerDelegate
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+      else {
+        fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+    }
+    photo.image = selectedImage
+    dismiss(animated: true, completion: nil)
+  }
 
 }
+
+
+
 
 protocol AddItemViewControllerDelegate {
   func onAddItem(item:Item?)

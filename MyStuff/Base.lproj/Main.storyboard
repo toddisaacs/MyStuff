@@ -172,9 +172,13 @@ Magic Keyboard - US English</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-Ur-DOG">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-Ur-DOG">
                                 <rect key="frame" x="16" y="357" width="343" height="290"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="7Dz-g0-jnN" appends="YES" id="74y-5P-uwR"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VW4-TM-nIr">
                                 <rect key="frame" x="14" y="314" width="47" height="21"/>
@@ -212,6 +216,11 @@ Magic Keyboard - US English</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ok-gT-nsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Cga-ef-xUh" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="7Dz-g0-jnN">
+                    <connections>
+                        <action selector="addPhoto:" destination="kJv-gy-7zp" id="d1N-tN-IHA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3341.5999999999999" y="222.63868065967017"/>
         </scene>
