@@ -17,15 +17,9 @@ class CoreDataStack {
   }()
   
   
-  private lazy var storeContainer: NSPersistentContainer = {
+  lazy var storeContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: self.modelName)
     
-    if self.inMemory {
-      let description = NSPersistentStoreDescription()
-      description.type = NSInMemoryStoreType
-      //description.configuration = .default
-      container.persistentStoreDescriptions = [description]
-    }
     container.loadPersistentStores {
       (storeDescription, error) in
       if let error = error as NSError? {
@@ -38,12 +32,10 @@ class CoreDataStack {
   
   
   private let modelName: String
-  private var inMemory = false
   
   //MARK: Initialization
-  init(modelName: String, inMemory: Bool) {
+  init(modelName: String) {
     self.modelName = modelName
-    self.inMemory = inMemory
   }
   
   

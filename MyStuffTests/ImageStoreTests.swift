@@ -21,10 +21,14 @@ class ImageStoreTests: XCTestCase {
     imageStore = ImageStore()
   }
   
+  override func tearDown() {
+    super.tearDown()
+    imageStore = nil
+  }
  
   
   func testStoreImage() {
-    XCTAssertNotNil(imageStore, "ImageSore not initialized")
+    XCTAssertNotNil(imageStore, "ImageStore not initialized")
     
     let testImage = UIImage(named: "noPhoto")
     XCTAssertNoThrow(try imageStore!.set(image: testImage!, key: IMAGE_KEY), "Unable to save image")

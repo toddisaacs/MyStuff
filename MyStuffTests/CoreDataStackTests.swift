@@ -13,18 +13,16 @@ import CoreData
 
 class CoreDataStackTests: XCTestCase {
   
-  var coreDataStack:CoreDataStack?
+  var coreDataStack:CoreDataStack!
   
   override func setUp() {
     super.setUp()
-    // create in memory context
-    coreDataStack = CoreDataStack(modelName: "MyStuff", inMemory: true)
+    coreDataStack = InMemoryDataStack()
   }
   
   override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     super.tearDown()
-
+    coreDataStack = nil
   }
   
   func testInsertItem() {
