@@ -11,6 +11,9 @@ import CoreData
 
 class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+  //REQUIRED 
+  var imageStore:ImageStore!
+  
   @IBOutlet weak var saveButton: UIBarButtonItem!
   
   @IBOutlet weak var nameText: UITextField!
@@ -56,7 +59,25 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
       item.name = nameText.text
       item.brand = brandText.text
       item.model = modelText.text
-      item.purchasePrice = 1.00
+      item.purchasePrice = NSDecimalNumber(string: purchasePriceText.text ?? "0")
+      item.itemValue = NSDecimalNumber(string: valueText.text ?? "0")
+      item.serialNumber = serialNumberText.text
+      
+      //Add Photo
+      if let image = photo.image {
+        let photoEntity = Photo(context: item.managedObjectContext!)
+        photoEntity.name = "photo name"
+        photoEntity.imageKey = UUID().uuidString
+        
+        item.addToPhotos(photoEntity)
+        
+        //save photo to disk
+        do {
+          try imageStore.set(image: image, key: photoEntity.imageKey!)
+        } catch let error as NSError {
+          print("Error saving photo \(error)")
+        }
+      }
       
       delegate?.onAddItem(item: item)
     }

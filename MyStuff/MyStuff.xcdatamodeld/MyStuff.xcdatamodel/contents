@@ -31,14 +31,15 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="location" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName=".Photo" syncable="YES">
+        <attribute name="imageKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="photos" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="72" positionY="45" width="128" height="73"/>
+        <element name="Category" positionX="-126" positionY="45" width="128" height="73"/>
         <element name="Item" positionX="-351" positionY="-18" width="128" height="210"/>
-        <element name="Location" positionX="63" positionY="36" width="128" height="133"/>
-        <element name="Photo" positionX="153" positionY="-36" width="128" height="88"/>
+        <element name="Location" positionX="-117" positionY="200" width="128" height="133"/>
+        <element name="Photo" positionX="-135" positionY="-117" width="128" height="105"/>
     </elements>
 </model>

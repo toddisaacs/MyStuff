@@ -13,6 +13,7 @@ class ItemTableViewController: UITableViewController {
   
   var fetchedResultsController:NSFetchedResultsController<Item>!
   var coreDataStack:CoreDataStack!
+  var imageStore:ImageStore!
   
   //MARK: Actions
   @IBAction func unwindToItemList(sender: UIStoryboardSegue) {
@@ -95,6 +96,18 @@ class ItemTableViewController: UITableViewController {
       cell.itemValue.text = NumberFormatter.localizedString(from: value, number: .currency)
     }
     
+    
+    if let photoEntity = item.photos?.allObjects.first as? Photo {
+     
+      print("Found photo")
+      let photoImage = imageStore.get(forKey: photoEntity.imageKey!)
+      cell.itemImage.image = photoImage
+      
+    } else {
+      cell.itemImage.image = UIImage(named: "noPhoto")
+    }
+    
+    
     cell.itemDescription.text = item.descr
   }
   
@@ -153,6 +166,7 @@ class ItemTableViewController: UITableViewController {
       //populate core data stack
       addItemController.delegate = self
       addItemController.item = Item(context: coreDataStack.managedContext)
+      addItemController.imageStore = self.imageStore
     default:
       fatalError("Unexpected segue identifier \(String(describing: segue.identifier))")
       
@@ -168,6 +182,7 @@ extension ItemTableViewController: AddItemViewControllerDelegate {
       try coreDataStack.saveContext()
     } catch let error as NSError {
       print("Error saving data \(error)")
+      
     }
   }
 }

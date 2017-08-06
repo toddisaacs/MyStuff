@@ -13,8 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let coreDataStack = CoreDataStack(modelName: "MyStuff", inMemory: false)
-
+  let coreDataStack = CoreDataStack(modelName: "MyStuff")
+  let imageStore = ImageStore()
+  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     //Override point for customization after application launch.
     
@@ -28,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let itemsController = navController?.topViewController as? ItemTableViewController
     
     itemsController?.coreDataStack = coreDataStack
-    
+    itemsController?.imageStore = imageStore
     
     return true
   }
