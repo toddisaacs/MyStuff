@@ -59,8 +59,13 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
       item.name = nameText.text
       item.brand = brandText.text
       item.model = modelText.text
-      item.purchasePrice = NSDecimalNumber(string: purchasePriceText.text ?? "0")
-      item.itemValue = NSDecimalNumber(string: valueText.text ?? "0")
+      
+      let price = Decimal(string: purchasePriceText.text!) ?? 0
+      let value =  Decimal(string: valueText.text!) ?? 0
+      
+      item.purchasePrice = price as NSDecimalNumber
+      item.itemValue = value as NSDecimalNumber
+      
       item.serialNumber = serialNumberText.text
       
       //Add Photo
