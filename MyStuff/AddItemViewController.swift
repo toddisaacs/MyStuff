@@ -9,15 +9,22 @@
 import UIKit
 import CoreData
 
-class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+/**
+  Inform the delegate a save is needed or not.  The entites are setup in the child or main context passed in by the caller
+ */
+protocol AddItemViewControllerDelegate {
+  func  didFinish(viewController: AddItemViewController, didSave: Bool)
+}
 
-  //REQUIRED 
+class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
+  //REQUIRED
   var imageStore:ImageStore!
   
   @IBOutlet weak var saveButton: UIBarButtonItem!
   
   @IBOutlet weak var nameText: UITextField!
-
+  
   @IBOutlet weak var brandText: UITextField!
   @IBOutlet weak var modelText: UITextField!
   @IBOutlet weak var serialNumberText: UITextField!
@@ -28,6 +35,7 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   
   //Properties
   var item: Item?
+  var context: NSManagedObjectContext!
   var delegate: AddItemViewControllerDelegate?
   
   @IBAction func cancel(_ sender: Any) {
@@ -55,60 +63,30 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
       
     }
     
-    if let item = item {
-      item.name = nameText.text
-      item.brand = brandText.text
-      item.model = modelText.text
-      
-      let price = Decimal(string: purchasePriceText.text!) ?? 0
-      let value =  Decimal(string: valueText.text!) ?? 0
-      
-      item.purchasePrice = price as NSDecimalNumber
-      item.itemValue = value as NSDecimalNumber
-      
-      item.serialNumber = serialNumberText.text
-      
-      //Add Photo
-      if let image = photo.image {
-        let photoEntity = Photo(context: item.managedObjectContext!)
-        photoEntity.name = "photo name"
-        photoEntity.imageKey = UUID().uuidString
-        
-        item.addToPhotos(photoEntity)
-        
-        //save photo to disk
-        do {
-          try imageStore.set(image: image, key: photoEntity.imageKey!)
-        } catch let error as NSError {
-          print("Error saving photo \(error)")
-        }
-      }
-      
-      delegate?.onAddItem(item: item)
-    }
+    let saveFlag = updateItem()
     
-    performSegue(withIdentifier: "unwindToItemList", sender: nil)
+    delegate?.didFinish(viewController:self, didSave:saveFlag)
   }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
   
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-      
-        print("prepare")
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // Do any additional setup after loading the view.
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  
+  
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
+    
+    print("prepare")
+  }
   
   //MARK: UIImagePickerControllerDelegate
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -124,12 +102,52 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
     photo.image = selectedImage
     dismiss(animated: true, completion: nil)
   }
+  
+}
 
+// MARK: Update Item
+private extension AddItemViewController {
+  func updateItem() -> Bool {
+    guard let item = item else { return false}
+    
+    item.name = nameText.text
+    item.brand = brandText.text
+    item.model = modelText.text
+    
+    let price = Decimal(string: purchasePriceText.text!) ?? 0
+    let value =  Decimal(string: valueText.text!) ?? 0
+    
+    item.purchasePrice = price as NSDecimalNumber
+    item.itemValue = value as NSDecimalNumber
+    
+    item.serialNumber = serialNumberText.text
+    
+    //if we have a photo create photo entity and save image
+    if let image = photo.image {
+      let photoEntity = Photo(context: item.managedObjectContext!)
+      photoEntity.name = "photo name"
+      photoEntity.imageKey = UUID().uuidString
+      
+      item.addToPhotos(photoEntity)
+      
+      //save photo to disk
+      do {
+        try imageStore.set(image: image, key: photoEntity.imageKey!)
+      } catch let error as NSError {
+        let itemValidationAlertController = UIAlertController(title: "System Error", message: "Error saving photo to disk \(error.code)", preferredStyle: .alert)
+        itemValidationAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(itemValidationAlertController, animated: true, completion: nil)
+        return false
+      }
+    }
+    
+    return true
+  }
+  
 }
 
 
 
 
-protocol AddItemViewControllerDelegate {
-  func onAddItem(item:Item?)
-}
+
