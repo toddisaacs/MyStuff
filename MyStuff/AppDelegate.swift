@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     print("Path: \(String(describing: paths.first))")
     
-    SeedData.seed(stack: coreDataStack)
+    //SeedData.seed(stack: coreDataStack)
     
     //populate main view with CoreDataStack
     let navController = window?.rootViewController as? UINavigationController

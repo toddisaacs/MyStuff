@@ -115,7 +115,7 @@ private extension AddItemViewController {
     item.model = modelText.text
     
     let price = Decimal(string: purchasePriceText.text!) ?? 0
-    let value =  Decimal(string: valueText.text!) ?? 0
+    let value = Decimal(string: valueText.text!) ?? price
     
     item.purchasePrice = price as NSDecimalNumber
     item.itemValue = value as NSDecimalNumber

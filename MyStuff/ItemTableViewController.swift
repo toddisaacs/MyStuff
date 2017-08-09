@@ -21,6 +21,17 @@ class ItemTableViewController: UITableViewController {
     
     fetchedResultsController = setupFetchedResultsController()
   }
+  
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      coreDataStack.managedContext.delete(fetchedResultsController.object(at: indexPath))
+      do {
+        try coreDataStack.saveContext()
+      } catch let error as NSError {
+        showAlert(title: "Data Error", message: "Could not delete item", error: error)
+      }
+    }
+  }
 }
 
 
@@ -63,6 +74,13 @@ private extension ItemTableViewController {
     fetchRequest.sortDescriptors = [sort]
     
     return fetchRequest
+  }
+  
+  func showAlert(title: String, message: String, error:NSError) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+      alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    
+    present(alertController, animated: true, completion: nil)
   }
 }
 
@@ -152,6 +170,7 @@ extension ItemTableViewController {
     cell.itemDescription.text = item.descr
   }
 }
+
 
 
 // MARK: NSFetchedResultsControllerDelegate
