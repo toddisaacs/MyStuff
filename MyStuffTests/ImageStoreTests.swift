@@ -14,11 +14,10 @@ import XCTest
 class ImageStoreTests: XCTestCase {
   
   var imageStore:ImageStore?
-  let IMAGE_KEY = "NOPHOTO"
   
   override func setUp() {
     super.setUp()
-    imageStore = ImageStore()
+    imageStore = ImageStore.sharedInstance
   }
   
   override func tearDown() {
@@ -27,28 +26,33 @@ class ImageStoreTests: XCTestCase {
   }
  
   
-  func testStoreImage() {
+  func testStoreAndGetImage() {
     XCTAssertNotNil(imageStore, "ImageStore not initialized")
     
     let testImage = UIImage(named: "noPhoto")
-    XCTAssertNoThrow(try imageStore!.set(image: testImage!, key: IMAGE_KEY), "Unable to save image")
+    var key: String?
     
-    let cacheImage = imageStore!.imageCache.object(forKey: IMAGE_KEY as NSString)
+    do {
+      key = try imageStore!.set(image: testImage!)
+      XCTAssertNotNil(key, "Expected image key to be returnerd")
+    } catch {
+      XCTFail("Error saving image")
+    }
+    
+    
+    let cacheImage = imageStore!.imageCache.object(forKey: key! as NSString)
     XCTAssertNotNil(cacheImage, "Image not found in cache after adding it")
-  }
-  
-  func testGetImage() {
-    let testImage = imageStore!.get(forKey: IMAGE_KEY)
-    XCTAssertNotNil(testImage, "Error getting image")
+
+    XCTAssertNotNil(imageStore!.get(forKey: key!), "Error getting image")
     
     //remove from cache and verify we can get image
     imageStore!.imageCache.removeAllObjects()
     
-    let testImage2 = imageStore!.get(forKey: IMAGE_KEY)
+    let testImage2 = imageStore!.get(forKey: key!)
     XCTAssertNotNil(testImage2, "Error getting image")
     
-    let cacheImage = imageStore!.imageCache.object(forKey: IMAGE_KEY as NSString)
-    XCTAssertNotNil(cacheImage, "Image not found in cache after fetcing it from disk")
+
+    XCTAssertNotNil(imageStore!.imageCache.object(forKey: key! as NSString), "Image not found in cache after fetcing it from disk")
   }
   
 }
