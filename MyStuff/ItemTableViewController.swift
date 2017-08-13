@@ -72,12 +72,19 @@ private extension ItemTableViewController {
     
     let sort = NSSortDescriptor(key: #keyPath(Item.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare))
     fetchRequest.sortDescriptors = [sort]
-    
+      
     return fetchRequest
   }
   
-  func showAlert(title: String, message: String, error:NSError) {
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+  func showAlert(title: String, message: String, error:NSError?) {
+    let displayMessage:String!
+    if let error = error {
+      displayMessage = message + " \(error.code)"
+    } else {
+      displayMessage = message
+    }
+    
+    let alertController = UIAlertController(title: title, message: displayMessage, preferredStyle: .alert)
       alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     
     present(alertController, animated: true, completion: nil)
@@ -90,26 +97,48 @@ extension ItemTableViewController {
     super.prepare(for: segue, sender: sender)
     
     switch(segue.identifier ?? "") {
-    case "addItem" :
-      guard let navController = segue.destination as? UINavigationController else {
+    //ADD ITEM
+    case "AddItem":
+      guard let navController = segue.destination as? UINavigationController,
+      let addItemController = navController.topViewController as? AddItemViewController else {
         fatalError("Unexpected destination \(segue.destination), Expected UINavigationCOntroller")
       }
+
+      let childContext = getChildContext()
+      let item = Item(context: childContext)
+      setupItemViewController(controller: addItemController, item: item, context: childContext)
       
-      guard let addItemController = navController.topViewController as? AddItemViewController else {
-        fatalError("Unexpected destination Expected AddItemViewController")
+    //EDIT ITEM
+    case "EditItem":
+      guard let addItemController = segue.destination as? AddItemViewController,
+        let indexPath = tableView.indexPathForSelectedRow else {
+        showAlert(title: "System Failure", message: "Invalid Configuration", error: nil)
+          return
       }
-      
-      //populate view controller with child context
-      let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-      childContext.parent = coreDataStack.managedContext
-      
-      addItemController.delegate = self
-      addItemController.item = Item(context: childContext)
-      addItemController.imageStore = self.imageStore
-      addItemController.context = childContext
+
+      let childContext = getChildContext()
+      let item = fetchedResultsController.object(at: indexPath)
+      //move item to child context
+      let tempItem = childContext.object(with: item.objectID) as? Item
+      setupItemViewController(controller: addItemController, item: tempItem!, context: childContext)
+ 
     default:
-      fatalError("Unexpected segue identifier, application mis-configured \(String(describing: segue.identifier))")
+      showAlert(title: "System Failure", message: "Invalid Configuration", error: nil)
     }
+  }
+  
+  func getChildContext() -> NSManagedObjectContext {
+    let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    childContext.parent = coreDataStack.managedContext
+    
+    return childContext
+  }
+  
+  func setupItemViewController(controller: AddItemViewController, item: Item, context: NSManagedObjectContext) {
+    controller.delegate = self
+    controller.item = item
+    controller.imageStore = self.imageStore
+    controller.context = context
   }
 }
 
@@ -143,6 +172,7 @@ extension ItemTableViewController {
     return cell
   }
   
+  
   func configure(cell: UITableViewCell, for indexPath: IndexPath) {
     guard let cell = cell as? ItemTableViewCell else {
       return
@@ -156,7 +186,7 @@ extension ItemTableViewController {
     }
     
     
-    if let photoEntity = item.photos?.allObjects.first as? Photo {
+    if let photoEntity = item.galleryImage {
       
       print("Found photo")
       let photoImage = imageStore.get(forKey: photoEntity.imageKey!)
@@ -165,7 +195,6 @@ extension ItemTableViewController {
     } else {
       cell.itemImage.image = UIImage(named: "noPhoto")
     }
-    
     
     cell.itemDescription.text = item.descr
   }
@@ -207,24 +236,26 @@ extension ItemTableViewController: AddItemViewControllerDelegate {
     guard didSave,
       let context = viewController.context,
       context.hasChanges else {
-        dismiss(animated: true)
+        viewController.dismissUniveral()
         return
     }
     
     context.perform {
       do {
+        print("saving child context")
         try context.save()
       } catch let error as NSError {
         fatalError("Error: \(error.localizedDescription)")
       }
       
       do {
+        print("saving main context")
         try self.coreDataStack.saveContext()
       } catch let error as NSError {
         print("Error \(error.localizedDescription)")
       }
     }
-    dismiss(animated: true)
+    viewController.dismissUniveral()
   }
   
 }
