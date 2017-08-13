@@ -37,6 +37,7 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   var item: Item?
   var context: NSManagedObjectContext!
   var delegate: AddItemViewControllerDelegate?
+  var imagePickerController:UIImagePickerController!
   
   @IBAction func cancel(_ sender: Any) {
     dismissUniveral()
@@ -53,11 +54,18 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   }
   
   @IBAction func addPhoto(_ sender: UITapGestureRecognizer) {
-    let imagePickerController = UIImagePickerController()
-    imagePickerController.sourceType = .photoLibrary
-    imagePickerController.delegate = self
+    let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
     
-    present(imagePickerController, animated: true, completion: nil)
+    alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
+      self.openCamera()
+    }))
+    
+    alert.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (_) in
+      self.openPhotos()
+    }))
+    
+    present(alert, animated: true, completion: nil)
+    
   }
   
   @IBAction func saveItem(_ sender: Any) {
@@ -79,8 +87,27 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
     delegate?.didFinish(viewController:self, didSave:saveFlag)
   }
   
+  func openCamera() {
+    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+      imagePickerController.sourceType = .camera
+      present(imagePickerController, animated: true, completion: nil)
+    } else {
+      let alert = UIAlertController(title: "Warning", message: "Camera not available", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      present(alert, animated: true, completion: nil)
+    }
+  }
+  
+  func openPhotos() {
+    imagePickerController.sourceType = .photoLibrary
+    present(imagePickerController, animated: true, completion: nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = self
     
     navigationItem.title = "testing"
     if let item = item {
