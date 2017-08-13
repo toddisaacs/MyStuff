@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  MyStuff
 //
-//  Created by Isaacs, Todd on 7/24/17.
+//  Created by Isaacs, Todd on 8/11/17.
 //  Copyright © 2017 Isaacs, Todd. All rights reserved.
 //
 
@@ -27,6 +27,7 @@ extension Item {
     @NSManaged public var category: Category?
     @NSManaged public var location: Location?
     @NSManaged public var photos: NSSet?
+    @NSManaged public var galleryImage: Photo?
 
 }
 
