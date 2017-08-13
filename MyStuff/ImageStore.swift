@@ -10,9 +10,14 @@ import UIKit
 
 class ImageStore {
 
+  static let sharedInstance = ImageStore()
+  private init() {}
+  
   let imageCache = NSCache<NSString, UIImage>()
   
-  func set(image: UIImage, key: String) throws {
+  func set(image: UIImage) throws -> String  {
+    let key = UUID().uuidString
+    print("Adding image to disk and cache \(key)")
     imageCache.setObject(image, forKey: key as NSString)
     
     let imageURL = getImageURL(forKey: key)
@@ -25,17 +30,21 @@ class ImageStore {
         throw error
       }
     }
+    
+    return key
   }
   
   func remove(key: String) {
     //clean up cache
     imageCache.removeObject(forKey: key as NSString)
+    print("Removed object from cache")
     
     //clean up disk
     let imageURL = getImageURL(forKey: key)
     
     do {
       try FileManager.default.removeItem(at: imageURL)
+      print("Removed image from disk")
     } catch let error as NSError {
       print("Error removing image for KEY: \(key) ERROR: \(error.userInfo)")
     }
@@ -43,6 +52,7 @@ class ImageStore {
   
   func get(forKey key:String) -> UIImage? {
     if let existingImage = imageCache.object(forKey: key as NSString) {
+      print("cache hit on image \(key)")
       return existingImage
     }
     
@@ -53,7 +63,7 @@ class ImageStore {
     }
     
     imageCache.setObject(imageFromDisk, forKey: key as NSString)
-    
+    print("Image from disk \(key)")
     return imageFromDisk
   }
   

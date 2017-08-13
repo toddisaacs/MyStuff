@@ -6,10 +6,10 @@
 //  Copyright © 2017 Isaacs, Todd. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 
 public class Item: NSManagedObject {
-
+  
 }

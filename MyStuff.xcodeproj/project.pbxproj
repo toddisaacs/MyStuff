@@ -30,6 +30,9 @@
 		32D7E8C31F18DF0B00919A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D7E8C21F18DF0B00919A98 /* Assets.xcassets */; };
 		32D7E8C61F18DF0B00919A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D7E8C41F18DF0B00919A98 /* LaunchScreen.storyboard */; };
 		32D7E8D11F18DF0B00919A98 /* MyStuffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7E8D01F18DF0B00919A98 /* MyStuffTests.swift */; };
+		32F1BF9D1F3BF42D00B5A676 /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1BF9C1F3BF42D00B5A676 /* ItemService.swift */; };
+		32F1BF9F1F3C841D00B5A676 /* InMemoryDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1BF9E1F3C841D00B5A676 /* InMemoryDataStack.swift */; };
+		32F1BFA01F3C845200B5A676 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4CA5C1F18EB360034470A /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,8 @@
 		32D7E8CC1F18DF0B00919A98 /* MyStuffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyStuffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D7E8D01F18DF0B00919A98 /* MyStuffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStuffTests.swift; sourceTree = "<group>"; };
 		32D7E8D21F18DF0B00919A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32F1BF9C1F3BF42D00B5A676 /* ItemService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
+		32F1BF9E1F3C841D00B5A676 /* InMemoryDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +145,7 @@
 				32C4CA5C1F18EB360034470A /* CoreDataStack.swift */,
 				3261BE841F26ABFA00CF32BD /* AddItemViewController.swift */,
 				3261BE861F2CEB6800CF32BD /* ImageStore.swift */,
+				32F1BF9C1F3BF42D00B5A676 /* ItemService.swift */,
 			);
 			path = MyStuff;
 			sourceTree = "<group>";
@@ -147,6 +153,7 @@
 		32D7E8CF1F18DF0B00919A98 /* MyStuffTests */ = {
 			isa = PBXGroup;
 			children = (
+				32F1BF9E1F3C841D00B5A676 /* InMemoryDataStack.swift */,
 				32D7E8D01F18DF0B00919A98 /* MyStuffTests.swift */,
 				32D7E8D21F18DF0B00919A98 /* Info.plist */,
 				3261BE881F2E2A2500CF32BD /* CoreDataStackTests.swift */,
@@ -205,7 +212,7 @@
 				TargetAttributes = {
 					32D7E8B41F18DF0B00919A98 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 9C759Q4CFH;
+						DevelopmentTeam = B5TXP469WM;
 						ProvisioningStyle = Automatic;
 					};
 					32D7E8CB1F18DF0B00919A98 = {
@@ -272,6 +279,7 @@
 				32D7E8BB1F18DF0B00919A98 /* ViewController.swift in Sources */,
 				3261BE821F267DB300CF32BD /* Photo+CoreDataClass.swift in Sources */,
 				32D7E8C11F18DF0B00919A98 /* MyStuff.xcdatamodeld in Sources */,
+				32F1BF9D1F3BF42D00B5A676 /* ItemService.swift in Sources */,
 				32D7E8B91F18DF0B00919A98 /* AppDelegate.swift in Sources */,
 				3261BE731F267A8C00CF32BD /* SeedData.swift in Sources */,
 				3261BE851F26ABFA00CF32BD /* AddItemViewController.swift in Sources */,
@@ -284,9 +292,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F1BFA01F3C845200B5A676 /* CoreDataStack.swift in Sources */,
 				3261BE8B1F3169CE00CF32BD /* ImageStoreTests.swift in Sources */,
 				32D7E8D11F18DF0B00919A98 /* MyStuffTests.swift in Sources */,
 				3261BE891F2E2A2500CF32BD /* CoreDataStackTests.swift in Sources */,
+				32F1BF9F1F3C841D00B5A676 /* InMemoryDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,10 +429,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9C759Q4CFH;
+				DEVELOPMENT_TEAM = B5TXP469WM;
 				INFOPLIST_FILE = MyStuff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.teisaacs.MyStuff;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teisaacs.MyStuff1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -432,10 +442,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9C759Q4CFH;
+				DEVELOPMENT_TEAM = B5TXP469WM;
 				INFOPLIST_FILE = MyStuff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.teisaacs.MyStuff;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teisaacs.MyStuff1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

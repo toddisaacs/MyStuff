@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 /**
-  Inform the delegate a save is needed or not.  The entites are setup in the child or main context passed in by the caller
+ * Inform the delegate a save is needed or not.  The entites are setup in the child or main context passed in by the caller
  */
 protocol AddItemViewControllerDelegate {
   func  didFinish(viewController: AddItemViewController, didSave: Bool)
@@ -39,7 +39,17 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   var delegate: AddItemViewControllerDelegate?
   
   @IBAction func cancel(_ sender: Any) {
-    navigationController?.dismiss(animated: true, completion: nil)
+    dismissUniveral()
+  }
+  
+  func dismissUniveral() {
+    let isPresentingInAddMode = presentingViewController is UINavigationController
+    
+    if isPresentingInAddMode {
+      dismiss(animated: true, completion: nil)
+    } else if let owningNavController = navigationController {
+      owningNavController.popViewController(animated: true)
+    }
   }
   
   @IBAction func addPhoto(_ sender: UITapGestureRecognizer) {
@@ -53,14 +63,15 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   @IBAction func saveItem(_ sender: Any) {
     guard let itemName = nameText.text, itemName != "" else {
       
-      let itemValidationAlertController = UIAlertController(title: "Invalid Item", message: "Name is required", preferredStyle: .alert)
+      let itemValidationAlertController = UIAlertController(title: "Invalid Item",
+                                                            message: "Name is required",
+                                                            preferredStyle: .alert)
       itemValidationAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
       
       present(itemValidationAlertController, animated: true, completion: nil)
       
       //cancel out of this method
       return
-      
     }
     
     let saveFlag = updateItem()
@@ -71,7 +82,23 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
+    navigationItem.title = "testing"
+    if let item = item {
+      nameText.text = item.name
+      brandText.text = item.brand
+      modelText.text = item.model
+      
+      purchasePriceText.text = item.purchasePrice?.stringValue ?? "0.00"
+      valueText.text = item.itemValue?.stringValue ?? purchasePriceText.text
+      serialNumberText.text = item.serialNumber
+      
+      if let galleryPhoto = item.galleryImage {
+        //for now the gallery photo is the first photo
+        if let key = galleryPhoto.imageKey, let photoImage = imageStore.get(forKey: key) {
+          photo.image = photoImage as UIImage
+        }
+      }
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -99,6 +126,8 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
       else {
         fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
     }
+    
+    //update view
     photo.image = selectedImage
     dismiss(animated: true, completion: nil)
   }
@@ -107,6 +136,7 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
 
 // MARK: Update Item
 private extension AddItemViewController {
+  
   func updateItem() -> Bool {
     guard let item = item else { return false}
     
@@ -115,7 +145,7 @@ private extension AddItemViewController {
     item.model = modelText.text
     
     let price = Decimal(string: purchasePriceText.text!) ?? 0
-    let value =  Decimal(string: valueText.text!) ?? 0
+    let value = Decimal(string: valueText.text!) ?? price
     
     item.purchasePrice = price as NSDecimalNumber
     item.itemValue = value as NSDecimalNumber
@@ -123,16 +153,18 @@ private extension AddItemViewController {
     item.serialNumber = serialNumberText.text
     
     //if we have a photo create photo entity and save image
+    
+    
     if let image = photo.image {
-      let photoEntity = Photo(context: item.managedObjectContext!)
-      photoEntity.name = "photo name"
-      photoEntity.imageKey = UUID().uuidString
+      if let photoEntity = item.galleryImage {
+        context.delete(photoEntity)
+      }
       
-      item.addToPhotos(photoEntity)
+      let photoEntity = Photo(context: context)
+      item.galleryImage = photoEntity
       
-      //save photo to disk
       do {
-        try imageStore.set(image: image, key: photoEntity.imageKey!)
+        try photoEntity.setImage(image: image)
       } catch let error as NSError {
         let itemValidationAlertController = UIAlertController(title: "System Error", message: "Error saving photo to disk \(error.code)", preferredStyle: .alert)
         itemValidationAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -140,9 +172,24 @@ private extension AddItemViewController {
         present(itemValidationAlertController, animated: true, completion: nil)
         return false
       }
+      print("photo key \(String(describing: photoEntity.imageKey))")
     }
     
     return true
+  }
+  
+  func showAlert(title: String, message: String, error:NSError?) {
+    let displayMessage:String!
+    if let error = error {
+      displayMessage = message + " \(error.code)"
+    } else {
+      displayMessage = message
+    }
+    
+    let alertController = UIAlertController(title: title, message: displayMessage, preferredStyle: .alert)
+    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    
+    present(alertController, animated: true, completion: nil)
   }
   
 }
