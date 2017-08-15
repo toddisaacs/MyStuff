@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,32 +14,33 @@
         <scene sceneID="fBA-Ca-SfA">
             <objects>
                 <tableViewController id="fyX-5V-jPE" customClass="ItemTableViewController" customModule="MyStuff" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" id="G4W-hY-CLW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" id="G4W-hY-CLW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" id="CA1-9J-IYE" customClass="ItemTableViewCell" customModule="MyStuff" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemTableViewCell" rowHeight="94" id="CA1-9J-IYE" customClass="ItemTableViewCell" customModule="MyStuff" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CA1-9J-IYE" id="G8x-Vb-qfs">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="51I-pu-WOF">
-                                            <rect key="frame" x="8" y="0.0" width="92" height="80"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="51I-pu-WOF">
+                                            <rect key="frame" x="8" y="5" width="92" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="92" id="Gpy-ld-yBt"/>
+                                                <constraint firstAttribute="height" constant="80" id="IHP-KB-zao"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="27-inch iMac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueg-Pc-CpK">
-                                            <rect key="frame" x="108" y="1" width="161" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27-inch iMac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueg-Pc-CpK">
+                                            <rect key="frame" x="106" y="5" width="178" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO2-I7-C4y">
-                                            <rect key="frame" x="108" y="20" width="259" height="57"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO2-I7-C4y">
+                                            <rect key="frame" x="108" y="22" width="259" height="56"/>
                                             <string key="text">3.4GHz quad-core 7th-generation Intel Core i5, Turbo Boost up to 3.8GHz
 8GB 2400MHz DDR4
 1TB Fusion Drive
@@ -49,14 +51,32 @@ Magic Keyboard - US English</string>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$1,123.89" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxX-Cn-8gp">
-                                            <rect key="frame" x="277" y="1" width="90" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1,123.89" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxX-Cn-8gp">
+                                            <rect key="frame" x="277" y="4" width="90" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="HK2-qB-SV7"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ZO2-I7-C4y" firstAttribute="trailing" secondItem="G8x-Vb-qfs" secondAttribute="trailingMargin" id="3Ay-Da-fMK"/>
+                                        <constraint firstAttribute="bottom" secondItem="51I-pu-WOF" secondAttribute="bottom" constant="8.5" id="9JB-ou-yvj"/>
+                                        <constraint firstItem="51I-pu-WOF" firstAttribute="top" secondItem="G8x-Vb-qfs" secondAttribute="top" constant="5" id="DoP-Xi-r78"/>
+                                        <constraint firstItem="ZO2-I7-C4y" firstAttribute="leading" secondItem="51I-pu-WOF" secondAttribute="trailing" constant="8" id="Lkj-Vc-Z2L"/>
+                                        <constraint firstItem="ueg-Pc-CpK" firstAttribute="leading" secondItem="51I-pu-WOF" secondAttribute="trailing" constant="6" id="NaM-vK-Z48"/>
+                                        <constraint firstAttribute="trailing" secondItem="ueg-Pc-CpK" secondAttribute="trailing" constant="91" id="QoK-ta-Itv"/>
+                                        <constraint firstAttribute="bottom" secondItem="ueg-Pc-CpK" secondAttribute="bottom" constant="67.5" id="T1F-fN-Vf7"/>
+                                        <constraint firstItem="IxX-Cn-8gp" firstAttribute="trailing" secondItem="ZO2-I7-C4y" secondAttribute="trailing" id="bJT-XX-T7k"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZO2-I7-C4y" secondAttribute="bottom" constant="8" id="bi3-7m-03Y"/>
+                                        <constraint firstItem="51I-pu-WOF" firstAttribute="leading" secondItem="G8x-Vb-qfs" secondAttribute="leading" constant="8" id="fne-Ty-ptl"/>
+                                        <constraint firstItem="ZO2-I7-C4y" firstAttribute="top" secondItem="G8x-Vb-qfs" secondAttribute="topMargin" constant="14" id="sN2-lZ-Mbk"/>
+                                        <constraint firstItem="ueg-Pc-CpK" firstAttribute="top" secondItem="G8x-Vb-qfs" secondAttribute="top" constant="5" id="tVC-Y4-pYn"/>
+                                        <constraint firstItem="IxX-Cn-8gp" firstAttribute="top" secondItem="G8x-Vb-qfs" secondAttribute="topMargin" constant="-4" id="tbs-Yt-m3q"/>
+                                        <constraint firstItem="IxX-Cn-8gp" firstAttribute="trailing" secondItem="G8x-Vb-qfs" secondAttribute="trailingMargin" id="wxh-Od-eTi"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="itemDescription" destination="ZO2-I7-C4y" id="KW7-vP-NCM"/>

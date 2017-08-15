@@ -109,7 +109,6 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
     imagePickerController = UIImagePickerController()
     imagePickerController.delegate = self
     
-    navigationItem.title = "testing"
     if let item = item {
       nameText.text = item.name
       brandText.text = item.brand
