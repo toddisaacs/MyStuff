@@ -54,18 +54,23 @@ class AddItemViewController: ViewController, UIImagePickerControllerDelegate, UI
   }
   
   @IBAction func addPhoto(_ sender: UITapGestureRecognizer) {
-    let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-    
-    alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
-      self.openCamera()
-    }))
-    
-    alert.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (_) in
-      self.openPhotos()
-    }))
-    
-    present(alert, animated: true, completion: nil)
-    
+    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+      let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+      
+      alert.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (_) in
+        self.openPhotos()
+      }))
+      
+      alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
+        self.openCamera()
+      }))
+      
+      alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+      
+      present(alert, animated: true, completion: nil)
+    } else {
+      openPhotos()
+    }
   }
   
   @IBAction func saveItem(_ sender: Any) {
