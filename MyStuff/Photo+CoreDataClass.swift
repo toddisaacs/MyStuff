@@ -31,14 +31,12 @@ public class Photo: NSManagedObject {
    * This function will also handle cleanup of images if an new image is set.  However, keep in mind that
    * NSFetchedResultsController will not detect child entity changes so it may be easier to just remove
    * and add a new Photo when changing an image to get the controller auto detect benefit.
+   * 
+   * NOTE: the workflow for photo image updates is to remove the existing photo and create a new on.  This 
+   * delete of image data will happen when the entity is removed, so auto cleanup of image files on delete.
    */
   func setImage(image:UIImage) throws {
-    
-    //remove existing image
-    if self.imageKey != nil {
-      ImageStore.sharedInstance.remove(key: self.imageKey!)
-    }
-    
+
     //save image to store and set imageKey
     do {
       try self.imageKey = ImageStore.sharedInstance.set(image: image)

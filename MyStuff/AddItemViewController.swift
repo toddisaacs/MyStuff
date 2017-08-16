@@ -180,7 +180,6 @@ private extension AddItemViewController {
     
     //if we have a photo create photo entity and save image
     
-    
     if let image = photo.image {
       if let photoEntity = item.galleryImage {
         context.delete(photoEntity)
