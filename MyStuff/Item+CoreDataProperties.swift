@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  MyStuff
 //
-//  Created by Isaacs, Todd on 8/11/17.
+//  Created by Isaacs, Todd (CAI - Carmel) on 8/15/17.
 //  Copyright © 2017 Isaacs, Todd. All rights reserved.
 //
 
@@ -19,15 +19,16 @@ extension Item {
     @NSManaged public var brand: String?
     @NSManaged public var descr: String?
     @NSManaged public var itemValue: NSDecimalNumber?
-    @NSManaged public var lastUpdated: NSDate?
+    @NSManaged public var lastUpdated: Date?
     @NSManaged public var model: String?
     @NSManaged public var name: String?
     @NSManaged public var purchasePrice: NSDecimalNumber?
     @NSManaged public var serialNumber: String?
+    @NSManaged public var purchaseDate: Date?
     @NSManaged public var category: Category?
+    @NSManaged public var galleryImage: Photo?
     @NSManaged public var location: Location?
     @NSManaged public var photos: NSSet?
-    @NSManaged public var galleryImage: Photo?
 
 }
 

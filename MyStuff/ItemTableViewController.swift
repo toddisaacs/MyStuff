@@ -32,6 +32,13 @@ class ItemTableViewController: UITableViewController {
       }
     }
   }
+  
+  lazy var dateFormatter:DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    
+    return formatter
+  }()
 }
 
 
@@ -187,16 +194,21 @@ extension ItemTableViewController {
     
     
     if let photoEntity = item.galleryImage {
-      
       print("Found photo")
       let photoImage = imageStore.get(forKey: photoEntity.imageKey!)
       cell.itemImage.image = photoImage
-      
     } else {
       cell.itemImage.image = UIImage(named: "noPhoto")
     }
     
-    cell.itemDescription.text = item.descr
+    cell.itemMake.text = item.brand
+    cell.itemModel.text = item.model
+    cell.itemSerialNumber.text = item.serialNumber
+    
+    if let purchaseDate = item.purchaseDate {
+       cell.itemPurchaseDate.text = dateFormatter.string(from: purchaseDate)
+    }
+   
   }
 }
 

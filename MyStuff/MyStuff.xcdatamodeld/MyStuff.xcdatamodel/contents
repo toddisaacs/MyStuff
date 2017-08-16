@@ -11,6 +11,7 @@
         <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purchaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="purchasePrice" optional="YES" attributeType="Decimal" minValueString="0" defaultValueString="0.0" syncable="YES"/>
         <attribute name="serialNumber" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
@@ -40,7 +41,7 @@
     </entity>
     <elements>
         <element name="Category" positionX="-126" positionY="45" width="128" height="73"/>
-        <element name="Item" positionX="-351" positionY="-18" width="128" height="223"/>
+        <element name="Item" positionX="-351" positionY="-18" width="128" height="240"/>
         <element name="Location" positionX="-117" positionY="200" width="128" height="133"/>
         <element name="Photo" positionX="-135" positionY="-117" width="128" height="118"/>
     </elements>
