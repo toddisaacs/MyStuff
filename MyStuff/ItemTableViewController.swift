@@ -201,13 +201,13 @@ extension ItemTableViewController {
       cell.itemImage.image = UIImage(named: "noPhoto")
     }
     
-    cell.itemMake.text = item.brand
-    cell.itemModel.text = item.model
-    cell.itemSerialNumber.text = item.serialNumber
-    
-    if let purchaseDate = item.purchaseDate {
-       cell.itemPurchaseDate.text = dateFormatter.string(from: purchaseDate)
-    }
+//    cell.itemMake.text = item.brand
+//    cell.itemModel.text = item.model
+//    cell.itemSerialNumber.text = item.serialNumber
+//    
+//    if let purchaseDate = item.purchaseDate {
+//       cell.itemPurchaseDate.text = dateFormatter.string(from: purchaseDate)
+//    }
    
   }
 }

@@ -13,12 +13,9 @@ class ItemTableViewCell: UITableViewCell {
   //MARK: Properties
   @IBOutlet weak var itemImage: UIImageView!
   @IBOutlet weak var itemName: UILabel!
-  @IBOutlet weak var itemDescription: UILabel!
+
   @IBOutlet weak var itemValue: UILabel!
-  @IBOutlet weak var itemMake: UILabel!
-  @IBOutlet weak var itemModel: UILabel!
-  @IBOutlet weak var itemPurchaseDate: UILabel!
-  @IBOutlet weak var itemSerialNumber: UILabel!
+  
   
   
   //MARK: Initialization
